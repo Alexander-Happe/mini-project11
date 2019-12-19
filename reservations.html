@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hot Restraunt</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Hot Restraunt</h1>
+      <h3>Current Reservations and Waiting List</h3>
+      <hr>
+      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Home</button></a>
+      <a href="/table"><button class="btn btn-danger btn-lg"><span
+            class="fa fa-eye"></span>View Tables</button></a>
+    </div>
+    
+    <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3><strong>Table Reservations</strong></h3>
+            </div>
+            <form class="m-4">
+                <!-- TEXT FIELD GROUPS -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" id="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input class="form-control form-control-lg" type="phoneNumer" id="PhoneNum" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input class="form-control form-control-sm" type="text" id="Email" placeholder="Enter Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="password">Unique ID</label>
+                    <input class="form-control" type="uniqueId" id="uniqueId">
+                </div>
+                <button class="btn btn-primary btn-block" type="button">Submit Reservation</button>
+            </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $("#search-btn").on("click", function() {
+      $.get("/api/tables", function(data) {
+        console.log(data);
+        if (data) {
+          $("#name").text(data.name);
+          $("#role").text(data.phoneNumber);
+          $("#age").text(data.age);
+          $("#force-points").text(data.forcePoints);
+        } else {
+          $("#name").text(
+            "The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
+  </script>
+</body>
